@@ -1,0 +1,25 @@
+fastapi
+uvicorn[standard]
+python-multipart
+sqlalchemy
+pymysql  # MySQL driver for DATABASE_URL=mysql+pymysql://... in production
+pydantic
+pydantic-settings
+python-jose[cryptography]
+passlib[bcrypt]
+bcrypt==4.0.1  # passlib 1.7.4 can't read version metadata on bcrypt>=4.1, breaking all signup/login
+python-dotenv
+email-validator
+httpx
+slowapi
+
+# Gemini (vision, chat, OCR, voice transcription)
+google-genai
+google-generativeai
+
+# Text-to-speech for the voice concierge
+edge-tts
+
+# Tests
+pytest
+pytest-asyncio

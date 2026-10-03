@@ -1,0 +1,25 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+env/
+.venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Local dev database — real user data, never commit
+*.db
+*.sqlite
+*.sqlite3
+fitsense.db
+
+# OS/editor junk
+.DS_Store
+.vscode/
+.idea/

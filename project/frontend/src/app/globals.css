@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  :root {
+    /* FitSense AI — strict 3-color brand system */
+    --background: #FFFDD7;   /* primary light */
+    --foreground: #595800;   /* primary dark */
+    --surface: #FFFDD7;
+    --surface-variant: #FFFDD7;
+    --border: #D9D68A;       /* dark @ ~30% over light */
+
+    --primary: #595800;              /* dark — headings, icons, nav text */
+    --primary-container: #F5FF00;    /* neon — CTAs, active states, accents */
+    --primary-foreground: #FFFDD7;   /* light text on dark bg-primary buttons */
+    --on-primary-container: #595800;
+
+    --secondary: #595800;
+    --secondary-container: #F5FF00;
+    --on-secondary-container: #595800;
+
+    --tertiary: #595800;
+    --tertiary-container: #F5FF00;
+
+    --on-surface: #595800;
+    --on-surface-variant: #767318;   /* dark @ ~70% over light, still on-brand */
+    --outline: #A6A34D;              /* dark @ ~45% over light */
+
+    --editorial-card: #FFFDD7;
+    --data-card: #FFFDD7;
+    --chip: #F5FF00;
+  }
+
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  ::selection {
+    background-color: var(--primary-container);
+    color: var(--on-surface);
+  }
+}
+
+@layer components {
+  .glass-nav {
+    background: rgba(255, 253, 215, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(89, 88, 0, 0.12);
+  }
+
+  .glass-panel {
+    background: rgba(255, 253, 215, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(89, 88, 0, 0.14);
+    box-shadow: 0px 10px 40px rgba(89, 88, 0, 0.08);
+  }
+
+  .glass-white {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0px 8px 32px rgba(89, 88, 0, 0.12), inset 0px 1px 0px rgba(255, 255, 255, 0.5);
+  }
+
+  .glass-card {
+    background: rgba(255, 253, 215, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(89, 88, 0, 0.14);
+    box-shadow: 0px 10px 40px rgba(89, 88, 0, 0.08);
+  }
+
+  .editorial-card {
+    background-color: var(--editorial-card);
+    border: 1px solid rgba(89, 88, 0, 0.14);
+    border-radius: 24px;
+    box-shadow: 0px 10px 40px rgba(89, 88, 0, 0.08);
+  }
+
+  .data-card {
+    background-color: var(--data-card);
+    border-radius: 20px;
+    border: 1px solid rgba(89, 88, 0, 0.14);
+  }
+
+  .chip {
+    background-color: var(--chip);
+    color: #595800;
+  }
+
+  .btn-primary {
+    background-color: var(--primary-container);
+    color: #595800;
+    border-radius: 14px;
+    transition: opacity 0.2s;
+  }
+
+  .btn-primary:hover {
+    opacity: 0.88;
+  }
+
+  .btn-secondary {
+    background-color: var(--background);
+    border: 1.5px solid #595800;
+    color: #595800;
+    border-radius: 14px;
+    transition: background-color 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background-color: rgba(89, 88, 0, 0.06);
+  }
+
+  .input-field {
+    background-color: var(--background);
+    border: 1.5px solid var(--border);
+    transition: all 0.3s ease;
+  }
+
+  .input-field:focus {
+    border-color: var(--primary-container);
+    box-shadow: 0 0 0 4px rgba(245, 255, 0, 0.35);
+    outline: none;
+  }
+
+  .soft-shadow {
+    box-shadow: 0px 10px 40px rgba(89, 88, 0, 0.08);
+  }
+
+  .style-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .style-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 15px 45px rgba(89, 88, 0, 0.12);
+  }
+}
+
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+}
