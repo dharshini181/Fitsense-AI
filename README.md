@@ -2,7 +2,7 @@
 
 ### Your Personal AI Fashion Assistant
 
-FitSense AI 2.0 is a full-stack **AI-powered fashion platform** designed to help users manage their wardrobe, discover personalized outfits, plan what to wear, prepare for travel, and interact with an AI fashion stylist.
+FitSense AI is a full-stack **AI-powered fashion platform** designed to help users manage their wardrobe, discover personalized outfits, plan what to wear, prepare for travel, and interact with an AI fashion stylist.
 
 The platform combines a **FastAPI backend** with a **Next.js frontend** and integrates powerful AI and external services including **Google Gemini, OpenWeatherMap, and Hugging Face**.
 
@@ -124,6 +124,6 @@ The platform combines a **FastAPI backend** with a **Next.js frontend** and inte
 ---
 
 
-## ⭐ FitSense AI 2.0
+## ⭐ FitSense AI 
 
 **An AI-powered personal fashion assistant built with Next.js, FastAPI, Python, SQLAlchemy, Google Gemini, OpenWeatherMap and Hugging Face.**
