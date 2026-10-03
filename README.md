@@ -1,4 +1,4 @@
-# 👗 FitSense AI 2.0
+# 👗 FitSense AI 
 
 ### Your Personal AI Fashion Assistant
 
