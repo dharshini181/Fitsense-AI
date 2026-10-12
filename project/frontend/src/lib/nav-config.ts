@@ -1,4 +1,4 @@
-import {
+﻿import {
   LayoutDashboard,
   Sparkles,
   Shirt,
@@ -10,6 +10,7 @@ import {
   SlidersHorizontal,
   Settings,
   ShieldCheck,
+  Camera,
   type LucideIcon,
 } from "lucide-react";
 

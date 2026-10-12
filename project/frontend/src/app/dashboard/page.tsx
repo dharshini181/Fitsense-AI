@@ -1,10 +1,9 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import {
-  Loader2,
+import { Loader2,
   Sparkles,
   Shirt,
   Star,
@@ -14,8 +13,7 @@ import {
   Cloud,
   CloudRain,
   Droplets,
-  MapPin,
-} from "lucide-react";
+  MapPin, Camera } from "lucide-react";
 import { authApi, analyticsApi, outfitsApi } from "@/lib/api";
 
 type Me = { name: string; role?: string };
@@ -161,6 +159,7 @@ export default function DashboardPage() {
     { name: "Generate Outfit", icon: Sparkles, onClick: handleGenerateToday },
     { name: "My Wardrobe", icon: Shirt, href: "/dashboard/wardrobe" },
     { name: "Rate an Outfit", icon: Star, href: "/dashboard/analysis" },
+    { name: "Style From Photo", icon: Camera, href: "/dashboard/photo-style" },
     { name: "Plan My Week", icon: CalendarDays, href: "/dashboard/planner" },
   ];
 

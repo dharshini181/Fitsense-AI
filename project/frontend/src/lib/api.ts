@@ -273,3 +273,7 @@ export const voiceApi = {
     body: JSON.stringify({ text }),
   }),
 };
+// Photo styling
+export const photoStyleApi = {
+  suggest: (file: File) => upload("/photo-style/suggest", file),
+};
