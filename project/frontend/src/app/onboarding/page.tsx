@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Check, Sparkles, ArrowLeft, ArrowRight } from "lucide-react";
+import { Check, ArrowLeft, ArrowRight } from "lucide-react";
 
 const styleOptions = [
   {
@@ -100,12 +100,11 @@ export default function OnboardingPage() {
     <div className="min-h-screen flex flex-col bg-background text-on-surface">
       <header className="w-full flex items-center justify-between px-container-padding-mobile md:px-container-padding-desktop h-20 bg-surface/40 backdrop-blur-xl fixed top-0 z-50">
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-primary">
-            <Sparkles className="w-6 h-6" />
-          </span>
-          <span className="text-headline-lg-mobile md:text-headline-lg font-bold tracking-tight">
-            FitSense AI
-          </span>
+          <img
+            src="/logo/fitsense-logo.png"
+            alt="FitSense AI"
+            className="h-10 w-auto object-contain"
+          />
         </Link>
         <Link
           href="/auth?mode=signup"

@@ -51,8 +51,14 @@ export default function StylistPage() {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const endRef = useRef<HTMLDivElement | null>(null);
 
   const lastOccasionRef = useRef("Casual");
+
+  // Keep the newest message (or the image that just arrived) in view.
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+  }, [messages, isLoading]);
 
   const speak = async (text: string) => {
     if (muted) return;
@@ -182,8 +188,8 @@ export default function StylistPage() {
   };
 
   return (
-    <div className="h-[calc(100vh-8rem)] flex flex-col animate-fade-in">
-      <header className="mb-6 flex justify-between items-end">
+    <div className="flex flex-col animate-fade-in">
+      <header className="mb-4 flex justify-between items-end">
         <div>
           <h1 className="text-4xl font-display font-medium tracking-tight mb-2">AI Stylist</h1>
           <p className="text-foreground/60">Type, or tap the mic and talk — I&apos;ll suggest outfits, combinations, and styling tips, and read my answers back to you.</p>
@@ -197,8 +203,9 @@ export default function StylistPage() {
         </button>
       </header>
 
-      <div className="flex-1 glass-panel rounded-3xl flex flex-col overflow-hidden relative">
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+      {/* The chat box has its own big height, so it no longer depends on the page around it */}
+      <div className="h-[78vh] min-h-[640px] glass-panel rounded-3xl flex flex-col overflow-hidden relative">
+        <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-6">
           {messages.map((msg, i) => (
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
@@ -208,9 +215,9 @@ export default function StylistPage() {
             >
               <div className={`rounded-2xl p-4 ${
                 msg.role === "user" 
-                  ? "max-w-[70%] bg-primary text-primary-foreground rounded-tr-sm" 
+                  ? "max-w-[75%] bg-primary text-primary-foreground rounded-tr-sm" 
                   : `bg-surface border border-border rounded-tl-sm text-foreground ${
-                      msg.image || msg.canGenerateImage ? "max-w-[85%] md:max-w-[520px]" : "max-w-[70%]"
+                      msg.image || msg.canGenerateImage ? "max-w-[92%] md:max-w-[680px]" : "max-w-[80%]"
                     }`
               }`}>
                 {msg.role === "ai" && (
@@ -224,7 +231,7 @@ export default function StylistPage() {
                   <img
                     src={msg.image}
                     alt="Outfit visualization"
-                    className="mt-3 rounded-xl w-full max-h-[480px] object-cover border border-white/10"
+                    className="mt-3 rounded-xl w-full max-w-[600px] object-contain border border-white/10"
                   />
                 )}
                 {msg.role === "ai" && msg.canGenerateImage && !msg.image && (
@@ -255,9 +262,10 @@ export default function StylistPage() {
              </div>
            </motion.div>
           )}
+          <div ref={endRef} />
         </div>
 
-        <div className="p-4 bg-surface border-t border-border space-y-2">
+        <div className="p-4 bg-surface border-t border-border space-y-2 shrink-0">
           <div className="flex items-center gap-2">
             <input
               type="text"
