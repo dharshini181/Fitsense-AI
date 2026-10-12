@@ -27,3 +27,10 @@ fitsense.db
 .DS_Store
 .vscode/
 .idea/
+
+.env
+venv/
+venv2/
+__pycache__/
+generated_images/
+*.db
