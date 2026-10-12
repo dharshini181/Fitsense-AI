@@ -51,13 +51,14 @@ export default function StylistPage() {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const endRef = useRef<HTMLDivElement | null>(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
 
   const lastOccasionRef = useRef("Casual");
 
-  // Keep the newest message (or the image that just arrived) in view.
+  // Scroll only the chat box (never the whole page) to the newest message.
   useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    const el = scrollRef.current;
+    if (el) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
   }, [messages, isLoading]);
 
   const speak = async (text: string) => {
@@ -188,11 +189,12 @@ export default function StylistPage() {
   };
 
   return (
-    <div className="flex flex-col animate-fade-in">
-      <header className="mb-4 flex justify-between items-end">
+    // Fits the screen: the page itself does not scroll, only the chat box does.
+    <div className="h-[calc(100dvh-9rem)] min-h-[440px] flex flex-col animate-fade-in">
+      <header className="mb-3 flex justify-between items-center shrink-0">
         <div>
-          <h1 className="text-4xl font-display font-medium tracking-tight mb-2">AI Stylist</h1>
-          <p className="text-foreground/60">Type, or tap the mic and talk — I&apos;ll suggest outfits, combinations, and styling tips, and read my answers back to you.</p>
+          <h1 className="text-2xl md:text-3xl font-display font-medium tracking-tight">AI Stylist</h1>
+          <p className="text-sm text-foreground/60">Type or tap the mic — I&apos;ll suggest outfits and styling tips.</p>
         </div>
         <button
           onClick={() => setMuted((m) => !m)}
@@ -203,9 +205,8 @@ export default function StylistPage() {
         </button>
       </header>
 
-      {/* The chat box has its own big height, so it no longer depends on the page around it */}
-      <div className="h-[78vh] min-h-[640px] glass-panel rounded-3xl flex flex-col overflow-hidden relative">
-        <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-6">
+      <div className="flex-1 min-h-0 glass-panel rounded-3xl flex flex-col overflow-hidden relative">
+        <div ref={scrollRef} className="flex-1 min-h-0 overflow-y-auto p-5 space-y-4">
           {messages.map((msg, i) => (
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
@@ -231,7 +232,7 @@ export default function StylistPage() {
                   <img
                     src={msg.image}
                     alt="Outfit visualization"
-                    className="mt-3 rounded-xl w-full max-w-[600px] object-contain border border-white/10"
+                    className="mt-3 rounded-xl max-h-[340px] w-auto max-w-full object-contain border border-white/10"
                   />
                 )}
                 {msg.role === "ai" && msg.canGenerateImage && !msg.image && (
@@ -262,10 +263,9 @@ export default function StylistPage() {
              </div>
            </motion.div>
           )}
-          <div ref={endRef} />
         </div>
 
-        <div className="p-4 bg-surface border-t border-border space-y-2 shrink-0">
+        <div className="p-3 bg-surface border-t border-border space-y-2 shrink-0">
           <div className="flex items-center gap-2">
             <input
               type="text"
@@ -274,7 +274,7 @@ export default function StylistPage() {
               placeholder="City for live weather (optional)"
               className="bg-background border border-border rounded-xl px-3 py-1.5 text-xs text-foreground/80 focus:outline-none focus:border-primary/50 transition-colors w-56"
             />
-            <span className="text-xs text-foreground/40">
+            <span className="text-xs text-foreground/40 hidden sm:inline">
               Used for outfit suggestions and the recommend button
             </span>
           </div>

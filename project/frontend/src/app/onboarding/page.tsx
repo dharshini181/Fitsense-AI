@@ -53,7 +53,7 @@ function StyleCard({
     <button
       type="button"
       onClick={onToggle}
-      className={`style-card group relative aspect-[4/5] rounded-[24px] overflow-hidden soft-shadow text-left focus:outline-none ${
+      className={`style-card group relative h-full w-full rounded-[20px] overflow-hidden soft-shadow text-left focus:outline-none ${
         selected ? "ring-2 ring-primary-container" : ""
       }`}
     >
@@ -63,21 +63,21 @@ function StyleCard({
         src={image}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 p-6">
-        <div className="glass-panel rounded-xl p-4 flex justify-between items-end backdrop-blur-md">
+      <div className="absolute bottom-0 left-0 right-0 p-3">
+        <div className="glass-panel rounded-xl p-3 flex justify-between items-end backdrop-blur-md">
           <div>
-            <h3 className="text-headline-lg-mobile font-bold text-on-surface mb-1">
+            <h3 className="text-base md:text-lg font-bold text-on-surface leading-tight">
               {title}
             </h3>
-            <p className="text-body-md text-on-surface-variant">{description}</p>
+            <p className="text-xs text-on-surface-variant">{description}</p>
           </div>
           <div
-            className={`w-8 h-8 rounded-full bg-primary-container flex items-center justify-center transition-opacity duration-300 ${
+            className={`w-7 h-7 shrink-0 rounded-full bg-primary-container flex items-center justify-center transition-opacity duration-300 ${
               selected ? "opacity-100" : "opacity-0"
             }`}
           >
             <span className="text-on-primary-container">
-              <Check className="w-[18px] h-[18px]" />
+              <Check className="w-4 h-4" />
             </span>
           </div>
         </div>
@@ -97,13 +97,13 @@ export default function OnboardingPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-on-surface">
-      <header className="w-full flex items-center justify-between px-container-padding-mobile md:px-container-padding-desktop h-20 bg-surface/40 backdrop-blur-xl fixed top-0 z-50">
+    <div className="h-dvh flex flex-col overflow-hidden bg-background text-on-surface">
+      <header className="w-full flex items-center justify-between px-container-padding-mobile md:px-container-padding-desktop h-14 shrink-0 bg-surface/40 backdrop-blur-xl">
         <Link href="/" className="flex items-center gap-2">
           <img
             src="/logo/fitsense-logo.png"
             alt="FitSense AI"
-            className="h-10 w-auto object-contain"
+            className="h-9 w-auto object-contain"
           />
         </Link>
         <Link
@@ -114,28 +114,27 @@ export default function OnboardingPage() {
         </Link>
       </header>
 
-      <main className="flex-grow pt-24 pb-32 px-container-padding-mobile md:px-container-padding-desktop flex flex-col max-w-7xl mx-auto w-full">
-        <div className="w-full max-w-md mx-auto mb-stack-lg">
-          <div className="flex justify-between text-caption font-medium text-on-surface-variant mb-unit">
+      <main className="flex-1 min-h-0 px-container-padding-mobile md:px-container-padding-desktop flex flex-col max-w-7xl mx-auto w-full py-3">
+        <div className="w-full max-w-md mx-auto mb-3 shrink-0">
+          <div className="flex justify-between text-xs font-medium text-on-surface-variant mb-1">
             <span>Step 2 of 4</span>
             <span>Style Preferences</span>
           </div>
-          <div className="h-2 bg-[#ECECD8] rounded-full overflow-hidden">
+          <div className="h-1.5 bg-[#ECECD8] rounded-full overflow-hidden">
             <div className="h-full bg-primary-container rounded-full w-1/2 transition-all duration-500" />
           </div>
         </div>
 
-        <div className="text-center mb-section-gap">
-          <h1 className="text-display-lg font-bold text-on-surface mb-stack-sm">
+        <div className="text-center mb-3 shrink-0">
+          <h1 className="text-2xl md:text-3xl font-bold text-on-surface mb-1">
             Define Your Aesthetic
           </h1>
-          <p className="text-body-lg text-on-surface-variant max-w-2xl mx-auto">
-            Select the styles that resonate with your personal vision. FitSense AI
-            will tailor recommendations to match your unique vibe.
+          <p className="text-sm text-on-surface-variant max-w-2xl mx-auto">
+            Pick the styles you like. FitSense AI will tailor recommendations to match.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter mb-section-gap">
+        <div className="flex-1 min-h-0 grid grid-cols-2 md:grid-cols-4 grid-rows-2 md:grid-rows-1 gap-3">
           {styleOptions.map((style) => (
             <StyleCard
               key={style.id}
@@ -149,11 +148,11 @@ export default function OnboardingPage() {
         </div>
       </main>
 
-      <div className="fixed bottom-0 left-0 right-0 bg-surface/80 backdrop-blur-xl border-t border-surface-variant/30 p-4 md:p-6 z-40 soft-shadow">
+      <div className="shrink-0 bg-surface/80 backdrop-blur-xl border-t border-surface-variant/30 px-4 py-3 soft-shadow">
         <div className="max-w-7xl mx-auto flex justify-between items-center gap-4">
           <Link
             href="/"
-            className="text-button font-semibold px-6 py-4 rounded-[16px] border-[1.5px] border-on-surface text-on-surface hover:bg-surface-variant transition-colors flex items-center gap-2"
+            className="text-sm font-semibold px-5 py-2.5 rounded-[14px] border-[1.5px] border-on-surface text-on-surface hover:bg-surface-variant transition-colors flex items-center gap-2"
           >
             <ArrowLeft className="w-4 h-4" />
             Back
@@ -161,11 +160,10 @@ export default function OnboardingPage() {
           <button
             type="button"
             onClick={() => {
-              // Carry the chosen styles forward to the (currently
-              // nonexistent-until-now) signup form — onboarding happens
-              // before an account exists, so this can't be saved to a
-              // profile yet. The signup page reads and applies it after
-              // the account is actually created.
+              // Carry the chosen styles forward to the signup form — onboarding
+              // happens before an account exists, so this can't be saved to a
+              // profile yet. The signup page reads and applies it after the
+              // account is actually created.
               const titles = styleOptions
                 .filter((s) => selected.includes(s.id))
                 .map((s) => s.title);
@@ -174,7 +172,7 @@ export default function OnboardingPage() {
               }
               router.push("/auth?mode=signup");
             }}
-            className="text-button font-semibold px-8 py-4 rounded-[16px] bg-primary-container text-on-surface hover:opacity-90 transition-colors flex items-center gap-2"
+            className="text-sm font-semibold px-7 py-2.5 rounded-[14px] bg-primary-container text-on-surface hover:opacity-90 transition-colors flex items-center gap-2"
           >
             Continue
             <ArrowRight className="w-4 h-4" />
