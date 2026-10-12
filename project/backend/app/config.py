@@ -14,7 +14,9 @@ class Settings(BaseSettings):
     SMTP_USER: str = ""
     SMTP_PASSWORD: str = ""
     WEATHER_API_KEY: str = ""
-    HUGGINGFACE_API_KEY: str = ""
+    HUGGINGFACE_API_KEY: str = ""  # no longer used for images (kept so old .env files still load)
+    CLOUDFLARE_ACCOUNT_ID: str = ""
+    CLOUDFLARE_API_TOKEN: str = ""
     CORS_ORIGINS: str = ""  # comma-separated extra allowed origins for production
 
     class Config:
