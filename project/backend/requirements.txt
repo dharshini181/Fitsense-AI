@@ -23,3 +23,6 @@ edge-tts
 # Tests
 pytest
 pytest-asyncio
+
+requests
+pillow

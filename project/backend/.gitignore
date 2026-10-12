@@ -2,7 +2,11 @@
 .env
 .env.*
 !.env.example
-
+.env
+backend/.env
+generated_images/
+venv2/
+*.db
 # Python
 __pycache__/
 *.py[cod]
