@@ -42,6 +42,26 @@ The platform combines a **FastAPI backend** with a **Next.js frontend** and inte
 * Body analysis
 * OCR for extracting information from images
 
+
+### Virtual Try-On ("Try on me")
+- Add your own photo in the AI Stylist with the camera button.
+- Click **Try on me** under any outfit suggestion to see that outfit on you.
+- Photos are processed for a single request only and are never stored.
+- Each user is limited to 10 try-ons per day, which is configurable.
+- The result is an AI-made preview, so real fit and colour may differ.
+
+### AI Outfit Image Generation
+- Click **Generate Image** under any AI reply to see the outfit on an AI-generated model.
+- Images are generated with Cloudflare Workers AI (FLUX.1-schnell).
+
+### Improved AI Stylist
+- The chat box scrolls on its own, so the page stays in place.
+- Voice input, spoken replies, and live weather by city are supported.
+
+### Cleaner Onboarding
+- The sign-up and onboarding pages fit on one screen with no scrolling.
+- The app uses the FitSense logo throughout.
+
 ### 🌤️ Weather-Aware Recommendations
 
 * Live weather integration through OpenWeatherMap
