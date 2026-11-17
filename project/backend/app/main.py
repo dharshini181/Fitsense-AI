@@ -25,6 +25,8 @@ from .routers import (
     personalization,
     voice,
     admin,
+    photo_style,
+    tryon,
 )
 
 # Create all DB tables
@@ -80,8 +82,6 @@ if settings.JWT_SECRET == _DEFAULT_JWT_SECRET:
     )
 
 # Mount all routers under /api prefix
-from app.routers import photo_style
-
 prefix = "/api"
 app.include_router(auth.router, prefix=prefix)
 app.include_router(wardrobe.router, prefix=prefix)
@@ -98,6 +98,7 @@ app.include_router(personalization.router, prefix=prefix)
 app.include_router(voice.router, prefix=prefix)
 app.include_router(admin.router, prefix=prefix)
 app.include_router(photo_style.router, prefix=prefix)
+app.include_router(tryon.router, prefix=prefix)
 
 
 @app.get("/")

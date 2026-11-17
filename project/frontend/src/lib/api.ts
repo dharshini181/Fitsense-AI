@@ -273,7 +273,14 @@ export const voiceApi = {
     body: JSON.stringify({ text }),
   }),
 };
-// Photo styling
+
+// ── Photo styling ────────────────────────────────────────────────────────
 export const photoStyleApi = {
   suggest: (file: File) => upload("/photo-style/suggest", file),
+};
+
+// ── Virtual try-on (your photo wearing a suggested outfit) ───────────────
+export const tryonApi = {
+  run: (file: File, description: string) =>
+    upload(`/tryon/run?description=${encodeURIComponent(description.slice(0, 400))}`, file),
 };
